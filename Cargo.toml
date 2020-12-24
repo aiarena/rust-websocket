@@ -17,7 +17,7 @@ categories = ["asynchronous", "network-programming", "web-programming", "web-pro
 license = "MIT"
 
 [dependencies]
-hyper = "^0.10.6"
+hyper = "^0.14.1"
 unicase = "1.0"
 url = "1.0"
 rand = "0.7.3"
