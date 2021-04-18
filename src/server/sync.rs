@@ -61,18 +61,18 @@ where
 	/// server.set_nonblocking(true);
 	///
 	/// for i in 1..3 {
-	/// 	let result = match server.accept() {
-	/// 		Ok(wsupgrade) => {
-	/// 			// Do something with the established TcpStream.
-	/// 		}
-	/// 		_ => {
-	/// 			// Nobody tried to connect, move on.
-	/// 		}
-	/// 	};
-	/// 	// Perform another task. Because we have a non-blocking server,
-	/// 	// this will execute independent of whether someone tried to
-	/// 	// establish a connection.
-	/// 	let two = 1+1;
+	///     let result = match server.accept() {
+	///         Ok(wsupgrade) => {
+	///             // Do something with the established TcpStream.
+	///         }
+	///         _ => {
+	///            // Nobody tried to connect, move on.
+	///         }
+	///     };
+	///     // Perform another task. Because we have a non-blocking server,
+	///     // this will execute independent of whether someone tried to
+	///     // establish a connection.
+	///     let two = 1+1;
 	/// }
 	/// # }
 	///```
@@ -125,12 +125,12 @@ impl WsServer<TlsAcceptor, TcpListener> {
 	/// for connection in server.filter_map(Result::ok) {
 	///     // Spawn a new thread for each connection.
 	///     thread::spawn(move || {
-	/// 		    let mut client = connection.accept().unwrap();
+	///             let mut client = connection.accept().unwrap();
 	///
-	/// 		    let message = Message::text("Hello, client!");
-	/// 		    let _ = client.send_message(&message);
+	///             let message = Message::text("Hello, client!");
+	///             let _ = client.send_message(&message);
 	///
-	/// 		    // ...
+	///            // ...
 	///     });
 	/// }
 	/// # }
@@ -209,12 +209,12 @@ impl WsServer<NoTlsAcceptor, TcpListener> {
 	/// for connection in server.filter_map(Result::ok) {
 	///     // Spawn a new thread for each connection.
 	///     thread::spawn(move || {
-	///		      let mut client = connection.accept().unwrap();
+	///	          let mut client = connection.accept().unwrap();
 	///
-	///		      let message = Message::text("Hello, client!");
-	///		      let _ = client.send_message(&message);
+	///	          let message = Message::text("Hello, client!");
+	///	          let _ = client.send_message(&message);
 	///
-	///		      // ...
+	///	          // ...
 	///    });
 	/// }
 	/// # }

@@ -47,7 +47,7 @@ where
 
 	/// An iterator over incoming messsages.
 	/// This iterator will block until new messages arrive and will never halt.
-	pub fn incoming_messages<'a>(&'a mut self) -> MessageIterator<'a, Receiver, BufReader<R>> {
+	pub fn incoming_messages(&mut self) -> MessageIterator<Receiver, BufReader<R>> {
 		self.receiver.incoming_messages(&mut self.stream)
 	}
 }

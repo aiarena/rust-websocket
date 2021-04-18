@@ -1,6 +1,5 @@
 //! The result type used within Rust-WebSocket
 
-use std;
 use std::convert::From;
 use std::error::Error;
 use std::fmt;

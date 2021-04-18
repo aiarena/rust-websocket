@@ -1,5 +1,5 @@
 //! Module containing the default implementation of data frames.
-use crate::result::{WebSocketError, WebSocketResult};
+use crate::result::{WebSocketResult};
 use crate::ws::dataframe::DataFrame as DataFrameable;
 use crate::ws::util::header as dfh;
 use crate::ws::util::header::DataFrameHeader;
@@ -44,7 +44,7 @@ impl DataFrame {
 	pub fn read_dataframe_body(
 		header: DataFrameHeader,
 		body: Vec<u8>,
-		should_be_masked: bool,
+		_should_be_masked: bool,
 	) -> WebSocketResult<Self> {
 		let finished = header.flags.contains(dfh::DataFrameFlags::FIN);
 

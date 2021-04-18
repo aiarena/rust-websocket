@@ -186,7 +186,7 @@ pub enum HyperIntoWsError {
 	/// IO error from reading the underlying socket
 	Io(io::Error),
 	/// Error while parsing an incoming request
-	Parsing(::hyper::error::Error),
+	Parsing(::hyper::Error),
 }
 
 impl Display for HyperIntoWsError {
@@ -227,8 +227,8 @@ impl From<io::Error> for HyperIntoWsError {
 	}
 }
 
-impl From<::hyper::error::Error> for HyperIntoWsError {
-	fn from(err: ::hyper::error::Error) -> Self {
+impl From<::hyper::Error> for HyperIntoWsError {
+	fn from(err: ::hyper::Error) -> Self {
 		HyperIntoWsError::Parsing(err)
 	}
 }

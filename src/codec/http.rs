@@ -4,7 +4,6 @@
 //! `HttpServerCodec` for an async HTTP server.
 use bytes::BufMut;
 use bytes::BytesMut;
-use hyper;
 use hyper::buffer::BufReader;
 use hyper::http::h1::parse_request;
 use hyper::http::h1::parse_response;

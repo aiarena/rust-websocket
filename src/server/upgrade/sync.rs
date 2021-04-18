@@ -133,13 +133,13 @@ where
 ///
 /// for stream in listener.incoming().filter_map(Result::ok) {
 ///     let mut client: Client<TcpStream> = match stream.into_ws() {
-/// 		    Ok(upgrade) => {
+///         Ok(upgrade) => {
 ///             match upgrade.accept() {
 ///                 Ok(client) => client,
 ///                 Err(_) => panic!(),
 ///             }
 ///         },
-/// 		    Err(_) => panic!(),
+///         Err(_) => panic!(),
 ///     };
 /// }
 /// ```

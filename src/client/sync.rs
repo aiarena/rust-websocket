@@ -332,7 +332,7 @@ where
 	///}
 	///# }
 	///```
-	pub fn incoming_messages<'a>(&'a mut self) -> MessageIterator<'a, Receiver, BufReader<S>> {
+	pub fn incoming_messages(&mut self) -> MessageIterator<Receiver, BufReader<S>> {
 		self.receiver.incoming_messages(&mut self.stream)
 	}
 }
