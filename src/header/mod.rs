@@ -10,6 +10,7 @@ pub use self::origin::Origin;
 pub use self::protocol::WebSocketProtocol;
 pub use self::version::WebSocketVersion;
 pub use hyper::header::*;
+pub use hyper::error::*;
 
 mod accept;
 pub mod extensions;
