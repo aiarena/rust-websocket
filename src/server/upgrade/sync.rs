@@ -73,7 +73,7 @@ where
 			None => BufReader::new(self.stream),
 		};
 
-		Ok(Client::unchecked(stream, self.headers, false, true))
+		Ok(Client::unchecked(stream, self.headers, false))
 	}
 
 	/// Reject the client's request to make a websocket connection.
@@ -167,7 +167,7 @@ where
 		let request = parse_request(&mut reader);
 
 		let (stream, buf, pos, cap) = reader.into_parts();
-		let buffer = Some(Buffer { buf, cap, pos });
+		let buffer = Some(Buffer { buf, pos, cap });
 
 		let request = match request {
 			Ok(r) => r,

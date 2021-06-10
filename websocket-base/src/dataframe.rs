@@ -1,5 +1,5 @@
 //! Module containing the default implementation of data frames.
-use crate::result::{WebSocketResult};
+use crate::result::WebSocketResult;
 use crate::ws::dataframe::DataFrame as DataFrameable;
 use crate::ws::util::header as dfh;
 use crate::ws::util::header::DataFrameHeader;
@@ -41,11 +41,7 @@ impl DataFrame {
 	/// Dataframe struct. A websocket message can be made up of many individual
 	/// dataframes, use the methods from the Message or OwnedMessage structs to
 	/// take many of these and create a websocket message.
-	pub fn read_dataframe_body(
-		header: DataFrameHeader,
-		body: Vec<u8>,
-		_should_be_masked: bool,
-	) -> WebSocketResult<Self> {
+	pub fn read_dataframe_body(header: DataFrameHeader, body: Vec<u8>) -> WebSocketResult<Self> {
 		let finished = header.flags.contains(dfh::DataFrameFlags::FIN);
 
 		let reserved = [
@@ -57,20 +53,8 @@ impl DataFrame {
 		let opcode = Opcode::new(header.opcode).expect("Invalid header opcode!");
 
 		let data = match header.mask {
-			Some(mask) => {
-				// if !should_be_masked {
-				// 	return Err(WebSocketError::DataFrameError(
-				// 		"Expected unmasked data frame",
-				// 	));
-				// }
-				mask::mask_data(mask, &body)
-			}
-			None => {
-				// if should_be_masked {
-				// 	return Err(WebSocketError::DataFrameError("Expected masked data frame"));
-				// }
-				body
-			}
+			Some(mask) => mask::mask_data(mask, &body),
+			None => body,
 		};
 
 		Ok(DataFrame {
@@ -82,7 +66,7 @@ impl DataFrame {
 	}
 
 	/// Reads a DataFrame from a Reader.
-	pub fn read_dataframe<R>(reader: &mut R, should_be_masked: bool) -> WebSocketResult<Self>
+	pub fn read_dataframe<R>(reader: &mut R) -> WebSocketResult<Self>
 	where
 		R: Read,
 	{
@@ -94,7 +78,7 @@ impl DataFrame {
 			return Err(io::Error::new(io::ErrorKind::UnexpectedEof, "incomplete payload").into());
 		}
 
-		DataFrame::read_dataframe_body(header, data, should_be_masked)
+		DataFrame::read_dataframe_body(header, data)
 	}
 }
 
