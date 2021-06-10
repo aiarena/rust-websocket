@@ -27,7 +27,7 @@ websocket-base = { path = "websocket-base", version="0.26.0", default-features=f
 futures-cpupool = "0.1"
 
 [dev-dependencies.tokio]
-version = "0.1"
+version = "1.6"
 default-features = false
 features = ["codec", "tcp", "rt-full"]
 
