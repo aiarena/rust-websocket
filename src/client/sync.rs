@@ -119,17 +119,12 @@ where
 	/// a stream that has a websocket connection already set up.
 	/// If in doubt, don't use this!
 	#[doc(hidden)]
-	pub fn unchecked(
-		stream: BufReader<S>,
-		headers: Headers,
-		out_mask: bool,
-		in_mask: bool,
-	) -> Self {
+	pub fn unchecked(stream: BufReader<S>, headers: Headers, out_mask: bool) -> Self {
 		Client {
 			headers,
 			stream,
-			sender: Sender::new(out_mask),    // true
-			receiver: Receiver::new(in_mask), // false
+			sender: Sender::new(out_mask), // true
+			receiver: Receiver::new(),     // false
 		}
 	}
 
